@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Marry Me?</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(120deg, #ff7479, #ffb5a0);
+            color: #fff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            /* Full height for centering */
+            overflow: hidden;
+            /* Prevent horizontal scrolling */
+            padding: 0 20px;
+            /* Add padding for smaller screens */
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+            line-height: 1.3;
+            /* Better spacing for multi-line text */
+        }
+
+        .button {
+            font-size: 1.2rem;
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: transform 0.2s, background-color 0.3s;
+            display: inline-block;
+            width: auto;
+            /* Keep buttons dynamic */
+            max-width: 100%;
+            /* Prevent buttons from overflowing */
+            text-align: center;
+        }
+
+        .yes-btn {
+            background-color: #ff3c2b;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .no-btn {
+            background-color: #c94343;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            background-color: #ffc107;
+            color: #fff;
+        }
+
+        /* Heart Background Animation */
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .heart {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .heart:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0.5s;
+        }
+
+        .heart:nth-child(2) {
+            top: 30%;
+            left: 50%;
+            animation-delay: 1.5s;
+        }
+
+        .heart:nth-child(3) {
+            top: 60%;
+            left: 80%;
+            animation-delay: 1s;
+        }
+
+        .heart:nth-child(4) {
+            top: 70%;
+            left: 30%;
+            animation-delay: 2s;
+        }
+
+        .heart:nth-child(5) {
+            top: 40%;
+            left: 70%;
+            animation-delay: 1.2s;
+        }
+
+        /* Add Sparkle Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Queries for Mobile Optimization */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .heart {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .button {
+                font-size: 0.9rem;
+                padding: 8px 18px;
+            }
+
+            p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hearts">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+    </div>
+
+    <h1>Will you marry me, Aliya?</h1>
+    <button class="button yes-btn" onclick="yesPage()">Yes</button>
+    <button class="button no-btn" onclick="noPage()">No</button>
+
+    <script>
+        function yesPage() {
+            window.location.href = "yes.html";
+        }
+
+        function noPage() {
+            document.body.innerHTML = `
+                <div class="hearts">
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                    <div class="heart"></div>
+                </div>
+                <h1>This is not possible, my babe. You have to marry me! 😘</h1>
+                <p>Redirecting to the YES page in <span id="timer">6</span> seconds...</p>
+            `;
+            let countdown = 6;
+            const interval = setInterval(() => {
+                countdown--;
+                document.getElementById("timer").textContent = countdown;
+                if (countdown === 0) {
+                    clearInterval(interval);
+                    window.location.href = "yes.html";
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
